@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tijuana Eye Center — Centro Oftalmológico de Alta Especialidad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-deep:#0B2648;
+    --navy:#213871;
+    --blue-med:#3A6B95;
+    --blue:#008AD1;
+    --cyan:#05BAEE;
+    --sky:#81CFF4;
+    --ice:#BCE3F9;
+    --bg-light:#F7FAFD;
+    --paper:#FFFFFF;
+    --text:#152238;
+    --muted:#5C7093;
+    --line:#DCE7F2;
+    --ring:rgba(5,186,238,0.28);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--text);
+    background:var(--bg-light);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  .display{font-family:'Fraunces',serif;}
+  .eyebrow{
+    font-family:'Inter',sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    font-weight:600;
+    color:var(--cyan);
+    display:flex;
+    align-items:center;
+    gap:0.6rem;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;height:1px;
+    background:var(--cyan);
+    display:inline-block;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  section{position:relative;}
+
+  /* ===== Focus-ring signature element ===== */
+  .ring{
+    position:absolute;
+    border-radius:50%;
+    border:1px solid var(--ring);
+    pointer-events:none;
+  }
+  @keyframes ringPulse{
+    0%,100%{transform:scale(1);opacity:0.55;}
+    50%{transform:scale(1.045);opacity:0.9;}
+  }
+  .ring.animated{animation:ringPulse 7s ease-in-out infinite;}
+
+  /* ===== Header ===== */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(255, 255, 255, 0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .header-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 0;
+  }
+  .logo-badge{
+    display:flex;align-items:center;gap:12px;
+  }
+  .logo-badge img{
+    height:50px;
+    background:#fff;
+    border-radius:10px;
+    padding:4px 8px;
+  }
+  .logo-badge span{
+    font-family:'Fraunces',serif;
+    font-size:1.02rem;
+    color:#000000;
+    letter-spacing:0.01em;
+  }
+  .nav-cta{
+    border:1px solid rgba(0, 0, 0, 0.35);
+    color:#010101;
+    padding:10px 22px;
+    border-radius:999px;
+    font-size:0.85rem;
+    font-weight:500;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition:all .25s ease;
+  }
+  .nav-cta:hover{
+    background:var(--cyan);
+    border-color:var(--cyan);
+    color:var(--navy-deep);
+  }
+
+  /* ===== Hero ===== */
+  .hero{
+    background:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(5,186,238,0.16), transparent 60%),
+      linear-gradient(180deg,var(--navy-deep) 0%, #0d2c52 60%, #0f3159 100%);
+    color:#fff;
+    padding:88px 0 0;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:56px;
+    align-items:center;
+  }
+  .hero-copy .eyebrow{margin-bottom:22px;}
+  .hero h1{
+    font-size:clamp(2.3rem, 4.1vw, 3.4rem);
+    font-weight:400;
+    line-height:1.12;
+    letter-spacing:-0.01em;
+  }
+  .hero h1 em{
+    font-style:italic;
+    font-weight:500;
+    background:linear-gradient(90deg, var(--cyan), var(--sky));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .hero p.lede{
+    margin-top:22px;
+    font-size:1.03rem;
+    line-height:1.7;
+    color:rgba(255,255,255,0.72);
+    max-width:480px;
+  }
+  .btn-primary{
+    display:inline-flex;align-items:center;gap:10px;
+    margin-top:32px;
+    background:linear-gradient(100deg, var(--cyan), var(--blue));
+    color:#04203a;
+    font-weight:600;
+    font-size:0.92rem;
+    padding:16px 30px;
+    border-radius:999px;
+    box-shadow:0 14px 30px -10px rgba(5,186,238,0.55);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 18px 36px -8px rgba(5,186,238,0.65);}
+  .btn-primary svg{transition:transform .25s ease;}
+  .btn-primary:hover svg{transform:translateX(3px);}
+
+  .hero-highlights{
+    margin-top:52px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:28px;
+    border-top:1px solid rgba(255,255,255,0.14);
+    padding-top:30px;
+  }
+  .hi-item{display:flex; gap:12px; align-items:flex-start;}
+  .hi-item .icon-ring{
+    flex:none; width:38px;height:38px;border-radius:50%;
+    border:1px solid rgba(5,186,238,0.5);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--cyan);
+  }
+  .hi-item h4{font-size:0.88rem;font-weight:600;margin-bottom:4px;line-height:1.4;color:#fff;}
+  .hi-item p{font-size:0.8rem;color:rgba(255,255,255,0.6);line-height:1.55;}
+  .hi-item a.inline-link{color:var(--sky); font-size:0.78rem; font-weight:500;}
+
+  .hero-photo{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px 0 0;
+  }
+  .hero-photo .frame{
+    position:relative;
+    width:100%;
+    max-width:420px;
+    aspect-ratio:4/5;
+    border-radius:28px;
+    overflow:hidden;
+    box-shadow:0 40px 70px -20px rgba(0,0,0,0.55);
+  }
+  .hero-photo .frame img{width:100%;height:100%;object-fit:cover;}
+  .hero-photo .frame::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(200deg, rgba(11,38,72,0) 55%, rgba(11,38,72,0.55) 100%);
+  }
+  .hero-photo .ring{border-color:rgba(5,186,238,0.35);}
+
+  /* ===== Stat strip ===== */
+  .stat-strip{
+    background:#0A2140;
+    padding:30px 0;
+    border-top:1px solid rgba(255,255,255,0.08);
+  }
+  .stat-strip .wrap{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+  }
+  .stat{
+    display:flex;align-items:center;gap:14px;
+    color:#fff;
+  }
+  .stat .num{
+    font-family:'Fraunces',serif;
+    font-size:1.7rem;
+    font-weight:500;
+    color:var(--cyan);
+    line-height:1;
+  }
+  .stat .label{font-size:0.78rem;color:rgba(255,255,255,0.62); line-height:1.4; margin-top:2px;}
+  .stat .flag{font-size:1.4rem;}
+
+  /* ===== Section header (shared) ===== */
+  .section-head{
+    text-align:center;
+    max-width:640px;
+    margin:0 auto 52px;
+  }
+  .section-head h2{
+    font-size:clamp(1.8rem,2.6vw,2.35rem);
+    font-weight:400;
+    margin-top:16px;
+    color:var(--navy-deep);
+    line-height:1.25;
+  }
+  .section-head .eyebrow{justify-content:center;}
+  .section-head .eyebrow::before{display:none;}
+
+  /* ===== Specialties ===== */
+  .specialties{padding:110px 0 90px;}
+  .spec-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:26px;
+  }
+  .spec-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:34px 30px;
+    position:relative;
+    transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+  }
+  .spec-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 24px 40px -18px rgba(33,56,113,0.22);
+    border-color:transparent;
+  }
+  .spec-card .ordinal{
+    position:absolute; top:28px; right:30px;
+    font-family:'Fraunces',serif;
+    font-size:2.1rem;
+    color:var(--ice);
+    font-weight:500;
+    line-height:1;
+  }
+  .spec-icon{
+    width:52px;height:52px;
+    border-radius:14px;
+    background:linear-gradient(135deg, var(--ice), #ffffff);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--blue);
+    margin-bottom:22px;
+  }
+  .spec-card h3{
+    font-family:'Fraunces',serif;
+    font-size:1.12rem;
+    font-weight:500;
+    color:var(--navy-deep);
+    margin-bottom:6px;
+    max-width:85%;
+  }
+  .spec-card .tagline{
+    font-size:0.86rem;
+    font-weight:600;
+    color:var(--blue-med);
+    margin-bottom:12px;
+  }
+  .spec-card p{
+    font-size:0.89rem;
+    line-height:1.68;
+    color:var(--muted);
+    margin-bottom:18px;
+  }
+  .spec-card .cta-link{
+    font-size:0.82rem;
+    font-weight:600;
+    color:var(--blue);
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .spec-card .cta-link svg{transition:transform .25s ease;}
+  .spec-card:hover .cta-link svg{transform:translateX(4px);}
+
+  /* ===== Why choose ===== */
+  .why{
+    background:linear-gradient(180deg, #EEF6FC, var(--bg-light));
+    padding:90px 0;
+  }
+  .why-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:8px;
+  }
+  .why-item{
+    text-align:center;
+    padding:22px 14px;
+    position:relative;
+  }
+  .why-item:not(:last-child)::after{
+    content:"";
+    position:absolute; right:0; top:20%; bottom:20%;
+    width:1px; background:var(--line);
+  }
+  .why-item .why-icon{
+    width:56px;height:56px;
+    border-radius:50%;
+    border:1px solid var(--ice);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--blue);
+    margin:0 auto 16px;
+  }
+  .why-item p{font-size:0.85rem; color:var(--muted); line-height:1.55; max-width:180px; margin:0 auto;}
+
+  /* ===== Contact ===== */
+  .contact{padding:110px 0 120px;}
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+  }
+  .contact-copy h2{
+    font-size:clamp(1.9rem,2.8vw,2.5rem);
+    font-weight:400;
+    line-height:1.24;
+    color:var(--navy-deep);
+    margin:18px 0 20px;
+  }
+  .contact-copy p{
+    font-size:0.98rem;
+    line-height:1.75;
+    color:var(--muted);
+    max-width:440px;
+    margin-bottom:30px;
+  }
+  .btn-whatsapp{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--navy-deep);
+    color:#fff;
+    font-weight:600;
+    font-size:0.9rem;
+    padding:15px 26px;
+    border-radius:999px;
+    transition:background .25s ease, transform .25s ease;
+  }
+  .btn-whatsapp:hover{background:var(--navy); transform:translateY(-2px);}
+
+  .form-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:24px;
+    padding:38px;
+    box-shadow:0 30px 60px -30px rgba(33,56,113,0.25);
+  }
+  .form-row{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;}
+  .field label{
+    font-size:0.72rem; font-weight:600; letter-spacing:0.04em;
+    text-transform:uppercase; color:var(--muted);
+    display:block; margin-bottom:8px;
+  }
+  .field input, .field select{
+    width:100%;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px 14px;
+    font-family:'Inter',sans-serif;
+    font-size:0.9rem;
+    color:var(--text);
+    background:#fbfdff;
+    transition:border-color .2s ease;
+  }
+  .field input:focus, .field select:focus{
+    outline:none;
+    border-color:var(--cyan);
+    box-shadow:0 0 0 3px rgba(5,186,238,0.15);
+  }
+  .form-card .field{margin-bottom:16px;}
+  .submit-btn{
+    width:100%;
+    margin-top:6px;
+    background:linear-gradient(100deg, var(--navy), var(--navy-deep));
+    color:#fff;
+    font-weight:600;
+    font-size:0.92rem;
+    padding:15px;
+    border-radius:12px;
+    border:none;
+    cursor:pointer;
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    transition:opacity .2s ease;
+  }
+  .submit-btn:hover{opacity:0.92;}
+
+  /* ===== Footer ===== */
+  footer{
+    background:var(--navy-deep);
+    color:rgba(255,255,255,0.75);
+    padding:50px 0 28px;
+  }
+  .footer-grid{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    gap:30px;
+    padding-bottom:32px;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+  }
+  .footer-brand{display:flex; align-items:center; gap:12px;}
+  .footer-brand img{height:34px; background:#fff; border-radius:8px; padding:3px 6px;}
+  .footer-brand div p{font-size:0.8rem; color:rgba(255,255,255,0.5); margin-top:2px;}
+  .footer-loc{font-size:0.85rem; display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.7);}
+  .footer-social{display:flex; gap:14px;}
+  .footer-social a{
+    width:36px;height:36px;border-radius:50%;
+    border:1px solid rgba(255,255,255,0.2);
+    display:flex;align-items:center;justify-content:center;
+    transition:background .2s ease, border-color .2s ease;
+  }
+  .footer-social a:hover{background:var(--cyan); border-color:var(--cyan); color:var(--navy-deep);}
+  .footer-bottom{
+    padding-top:22px;
+    font-size:0.76rem;
+    color:rgba(255,255,255,0.4);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+
+  /* ===== Reveal on scroll ===== */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    .ring.animated{animation:none;}
+    .reveal{opacity:1; transform:none; transition:none;}
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr; gap:44px;}
+    .hero-highlights{grid-template-columns:1fr; gap:22px;}
+    .hero-photo{order:-1;}
+    .hero-photo .frame{max-width:340px;}
+    .stat-strip .wrap{grid-template-columns:repeat(2,1fr); row-gap:22px;}
+    .spec-grid{grid-template-columns:1fr 1fr; gap:20px;}
+    .why-grid{grid-template-columns:repeat(2,1fr); row-gap:26px;}
+    .why-item:nth-child(2n)::after{display:none;}
+    .contact-grid{grid-template-columns:1fr;}
+    .form-card{padding:28px;}
+  }
+  @media (max-width:600px){
+    .wrap{padding:0 20px;}
+    .header-inner{padding:12px 0;}
+    .logo-badge span{display:none;}
+    .nav-cta{padding:9px 16px; font-size:0.78rem;}
+    .hero{padding:60px 0 0;}
+    .spec-grid{grid-template-columns:1fr;}
+    .why-grid{grid-template-columns:1fr;}
+    .why-item::after{display:none;}
+    .form-row{grid-template-columns:1fr;}
+    .footer-grid{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-inner">
+    <div class="logo-badge">
+      <img src="Logo Isotipo Tec.png" alt="Tijuana Eye Center">
+      <span>Tijuana Eye Center<sup style="font: size 1em;">®</sup></span>
+    </div>
+    <a href="#contacto" class="nav-cta">
+      Agenda tu evaluación
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="ring animated" style="width:520px;height:520px; top:-180px; left:-160px;"></div>
+  <div class="ring" style="width:340px;height:340px; top:60px; left:-40px;"></div>
+
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy reveal in">
+        <div class="eyebrow">Centro Oftalmológico de Alta Especialidad</div>
+        <h1 class="display">Ver con<br><em>perfecta claridad</em><br>vuelve a ser posible.</h1>
+        <p class="lede">Más de 50 años ayudando a pacientes de México y Estados Unidos a recuperar y proteger su visión mediante cirugía ocular, tecnología de clase mundial y atención personalizada, en un solo lugar.</p>
+        <a href="#contacto" class="btn-primary">
+          Quiero mejorar mi visión
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+
+        <div class="hero-highlights">
+          <div class="hi-item">
+            <div class="icon-ring">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21C7 21 2.7 17.6 1 12 2.7 6.4 7 3 12 3s9.3 3.4 11 9c-1.7 5.6-6 9-11 9Z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <div>
+              <h4>Un solo lugar para cuidar la salud visual de toda tu familia.</h4>
+            </div>
+          </div>
+          <div class="hi-item">
+            <div class="icon-ring">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
+            </div>
+            <div>
+              <h4>Tecnología diagnóstica y quirúrgica de clase mundial para diagnósticos más precisos, Schwind AMARIS · Pentacam · IOLMaster 700 · OCT.</h4>
+              
+            </div>
+          </div>
+          <div class="hi-item">
+            <div class="icon-ring">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>
+            </div>
+            <div>
+              <h4>A solo minutos de la frontera con San Diego, miles de pacientes confían en nosotros.</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-photo reveal in">
+        <div class="ring animated" style="width:110%;height:110%; top:-5%; left:-5%;"></div>
+        <div class="frame">
+          <img src="_MG_6740.jpg" alt="Oftalmóloga realizando evaluación visual a paciente">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stat-strip">
+  <div class="wrap">
+    <div class="stat">
+      <span class="flag">🏆</span>
+      <div><div class="num">+50</div><div class="label">años de experiencia</div></div>
+    </div>
+    <div class="stat">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#05BAEE" stroke-width="1.6"><path d="M12 21C7 21 2.7 17.6 1 12 2.7 6.4 7 3 12 3s9.3 3.4 11 9c-1.7 5.6-6 9-11 9Z"/><circle cx="12" cy="12" r="3"/></svg>
+      <div><div class="num">+100,000</div><div class="label">cirugías realizadas</div></div>
+    </div>
+    <div class="stat">
+      <span class="flag" style="color:#05BAEE;">★</span>
+      <div><div class="num">4.9</div><div class="label">calificación de nuestros pacientes</div></div>
+    </div>
+    <div class="stat">
+      <span class="flag">🇲🇽 🇺🇸</span>
+      <div><div class="num" style="font-size:1.1rem;">Pacientes de</div><div class="label">México y Estados Unidos</div></div>
+    </div>
+  </div>
+</div>
+
+<section class="specialties">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Nuestras especialidades</div>
+      <h2 class="display">Un cuidado experto</h2>
+      <h2 class="display">para cada necesidad visual</h2>
+    </div>
+
+    <div class="spec-grid">
+
+      <div class="spec-card reveal">
+        <span class="ordinal">01</span>
+        <div class="spec-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><img src="laser.png" alt="LASIK"></svg></div>
+        <h3 class="display">Deja los lentes</h3>
+        <div class="tagline">Recupera tu libertad visual sin depender de lentes.</div>
+        <p>Muchos pacientes logran reducir o eliminar la dependencia de lentes, según su evaluación médica. Corrige miopía, hipermetropía y astigmatismo con cirugía FemtoLASIK de alta precisión y vuelve a disfrutar una visión nítida en un procedimiento ambulatorio que dura solo unos minutos.</p>
+        <a href="#" class="cta-link">Agenda tu evaluación FemtoLASIK <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+
+      <div class="spec-card reveal">
+        <span class="ordinal">02</span>
+        <div class="spec-icon"><img src="catarata.png" alt="catarata"></svg></div>
+        <h3 class="display">Catarata</h3>
+        <div class="tagline">En pacientes candidatos, la cirugía de catarata puede mejorar significativamente la calidad visual.</div>
+        <p>Si notas visión borrosa, dificultad para conducir de noche o colores menos brillantes, la catarata puede ser la causa. Reemplazamos el cristalino opaco con un lente intraocular de alta tecnología para recuperar una visión clara.</p>
+        <a href="#" class="cta-link">Solicita una valoración de catarata <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+
+      <div class="spec-card reveal">
+        <span class="ordinal">03</span>
+        <div class="spec-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><img src="pediatria.png" alt="pediatrica"></svg></div>
+        <h3 class="display">Oftalmología Pediátrica</h3>
+        <div class="tagline">Detectar a tiempo cambia el futuro de tu hijo.</div>
+        <p>Muchos problemas visuales infantiles no presentan síntomas evidentes. Realizamos revisiones especializadas para detectar y tratar estrabismo, ojo vago, miopía y otros trastornos visuales en un ambiente diseñado para su confianza.</p>
+        <a href="#" class="cta-link">Agenda la revisión visual de tu hijo <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+
+      <div class="spec-card reveal">
+        <span class="ordinal">04</span>
+        <div class="spec-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><img src="oculoplastica.png" alt="oculoplastica"></svg></div>
+        <h3 class="display">Oculoplastia y Estética Ocular</h3>
+        <div class="tagline">Una mirada más saludable, funcional y rejuvenecida.</div>
+        <p>Tratamos enfermedades de los párpados, la vía lagrimal y la órbita, además de realizar procedimientos como blefaroplastia para mejorar tanto la función como la apariencia de la mirada, siempre preservando la salud de tus ojos.</p>
+        <a href="#" class="cta-link">Agenda una consulta con nuestro especialista <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+
+      <div class="spec-card reveal">
+        <span class="ordinal">05</span>
+        <div class="spec-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><img src="retina.png" alt="retina"></svg></div>
+        <h3 class="display">Retina</h3>
+        <div class="tagline">Detectar a tiempo una enfermedad de la retina puede salvar tu visión.</div>
+        <p>La retina es una de las estructuras más importantes del ojo. Diagnosticamos y tratamos enfermedades como retinopatía diabética, desprendimiento de retina y degeneración macular con tecnología de alta precisión y experiencia.</p>
+        <a href="#" class="cta-link">Agenda una consulta de retina <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+
+      <div class="spec-card reveal">
+        <span class="ordinal">06</span>
+        <div class="spec-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="7" width="18" height="13" rx="2.2"/><img src="estudios.png" alt="estudios"></svg></div>
+        <h3 class="display">Estudios Oftalmológicos Especializados</h3>
+        <div class="tagline">La mejor decisión comienza con un diagnóstico preciso.</div>
+        <p>Contamos con tecnología de última generación para realizar estudios como OCT, topografía corneal, campo visual, biometría y retinografía, permitiendo detectar enfermedades de manera temprana y diseñar el tratamiento más adecuado.</p>
+        <a href="#" class="cta-link">Agenda tus estudios oftalmológicos <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Nuestro compromiso</div>
+      <h2 class="display">¿Por qué elegir Tijuana Eye Center?</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item reveal">
+        <div class="why-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3Z"/></svg></div>
+        <p>Más de 50 años cuidando la salud visual de nuestros pacientes.</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="8" cy="9" r="3.2"/><circle cx="17" cy="9" r="3.2"/><path d="M3 20c0-3 2.1-5 5-5s5 2 5 5M11 20c0-3 2.1-5 5-5s5 2 5 5"/></svg></div>
+        <p>Oftalmólogos especialistas en cada área de la oftalmología.</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5"/><path d="M12 4v2M12 18v2M4 12h2M18 12h2"/></svg></div>
+        <p>Tecnología diagnóstica y quirúrgica de última generación.</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.8 4.6c-2-1.1-4.4-.7-6 .9L12 8.3l-2.8-2.8c-1.6-1.6-4-2-6-.9-2.6 1.5-3 5.2-.8 7.4L12 21l9.6-9c2.2-2.2 1.8-5.9-.8-7.4Z"/></svg></div>
+        <p>Tratamientos personalizados para cada paciente.</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20c1-3.6 4-5.6 7.5-5.6s6.5 2 7.5 5.6"/></svg></div>
+        <p>Atención integral, desde la evaluación hasta el seguimiento postoperatorio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-copy reveal">
+        <div class="eyebrow">Tu visión merece la mejor atención</div>
+        <h2 class="display">Agenda hoy tu cita y da el primer paso hacia una mejor visión.</h2>
+        <p>Ya sea que necesites una consulta, estudios especializados o cirugía, nuestro equipo está listo para ayudarte a encontrar la mejor solución para tu salud visual.</p>
+        <a href="https://wa.me/526646340080" class="btn-whatsapp" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.77.46 3.45 1.35 4.95L2 22l5.28-1.39a9.9 9.9 0 0 0 4.76 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.09c-.24.68-1.4 1.32-1.93 1.36-.5.05-1.05.24-3.5-.73-2.96-1.17-4.87-4.2-5.02-4.4-.15-.2-1.2-1.6-1.2-3.06 0-1.45.76-2.16 1.03-2.46.27-.29.6-.36.8-.36.2 0 .4 0 .58.01.19.01.44-.07.68.53.25.6.85 2.08.92 2.23.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.17-.31.39-.44.52-.15.15-.3.31-.13.6.17.3.75 1.25 1.62 2.03 1.11 1 2.05 1.31 2.34 1.46.29.15.46.13.63-.08.17-.2.72-.85.92-1.14.2-.29.39-.24.65-.15.27.1 1.71.82 2 .97.29.15.48.22.55.34.07.13.07.75-.17 1.43Z"/></svg>
+          Agendar mi cita por WhatsApp
+        </a>
+      </div>
+
+      <form class="form-card reveal" onsubmit="event.preventDefault();">
+        <div class="form-row">
+          <div class="field">
+            <label>Nombre</label>
+            <input type="text" placeholder="Tu nombre completo">
+          </div>
+          <div class="field">
+            <label>Teléfono</label>
+            <input type="tel" placeholder="+1 (619) 000-0000">
+          </div>
+        </div>
+        <div class="field">
+          <label>Correo electrónico</label>
+          <input type="email" placeholder="correo@ejemplo.com">
+        </div>
+        <div class="field">
+          <label>Área de interés</label>
+          <select>
+            <option>Selecciona una especialidad</option>
+            <option>Cirugía FemtoLASIK</option>
+            <option>Cirugía de Catarata</option>
+            <option>Oftalmología Pediátrica</option>
+            <option>Oculoplastia y Estética Ocular</option>
+            <option>Retina</option>
+            <option>Estudios Oftalmológicos Especializados</option>
+          </select>
+        </div>
+        <button class="submit-btn" type="submit">
+          Solicitar evaluación
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="Logo Isotipo Tec.png" alt="Tijuana Eye Center">
+        <div>
+          <div style="font-family:'Fraunces',serif; font-size:1rem; color:#fff;">Tijuana Eye Center<sup style="font-size:0.6em;">®</sup></div>
+          <p>Cuidamos tu visión. Transformamos tu vida.</p>
+        </div>
+      </div>
+      <div class="footer-loc">
+       <a href="https://www.google.com/maps/dir/32.4595851,-116.8252101/Cl%C3%ADnica+de+Ojos+de+Tijuana,+Ignacio+Comonfort+9350-Int.105,+Zona+Urbana+Rio+Tijuana,+22010+Tijuana,+B.C./@32.4885607,-117.0083089,12z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x80d94851a3adb587:0x9c6038d818c33c94!2m2!1d-117.0247325!2d32.5289281?entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D" class="footer-loc" target="_blank" rel="noopener noreferrer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+             <path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11Z"/>
+             <circle cx="12" cy="10" r="2.4"/>
+          </svg>
+          Ignacio Comonfort 9350-Int.105, Zona Urbana Rio Tijuana, 22010 Tijuana, B.C.  
+       </a>
+        
+      </div>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/tijuanaeyecenter" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8.4h2.8l.4-3.3h-3.2V8.1c0-.95.27-1.6 1.63-1.6h1.74V3.5c-.3-.04-1.33-.13-2.53-.13-2.5 0-4.22 1.53-4.22 4.34v2.42H7.3v3.3h2.85V22h3.35Z"/></svg></a>
+        <a href="https://www.instagram.com/tijuanaeyecenter/" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12s0-3.2-.4-4.7c-.24-.87-.93-1.55-1.8-1.79C18.3 5 12 5 12 5s-6.3 0-7.8.5c-.87.24-1.56.92-1.8 1.8C2 8.8 2 12 2 12s0 3.2.4 4.7c.24.87.93 1.53 1.8 1.77C5.7 19 12 19 12 19s6.3 0 7.8-.53c.87-.24 1.56-.9 1.8-1.77.4-1.5.4-4.7.4-4.7ZM10 15V9l5.2 3-5.2 3Z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Tijuana Eye Center. Todos los derechos reservados.</span>
+      <span>Aviso de privacidad · Términos y condiciones</span>
+      <span> Licencia Sanitaria: 17AM020040034 | Cofepris: 203300201A0987</span>
+      <span>Responsable Sanitario Dr. Juan Pablo Rodríguez UAG - 2965740</span>
+      <span>La información de este sitio es únicamente informativa y no sustituye la consulta con un médico especialista.</span>
+    </div>
+  </div>
+  <p></p>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
