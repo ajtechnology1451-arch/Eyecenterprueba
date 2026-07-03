@@ -468,18 +468,35 @@
   }
 
   /* ===== Responsive ===== */
-  @media (max-width:980px){
-    .hero-grid{grid-template-columns:1fr; gap:44px;}
-    .hero-highlights{grid-template-columns:1fr; gap:22px;}
-    .hero-photo{order:-1;}
-    .hero-photo .frame{max-width:340px;}
-    .stat-strip .wrap{grid-template-columns:repeat(2,1fr); row-gap:22px;}
-    .spec-grid{grid-template-columns:1fr 1fr; gap:20px;}
-    .why-grid{grid-template-columns:repeat(2,1fr); row-gap:26px;}
-    .why-item:nth-child(2n)::after{display:none;}
-    .contact-grid{grid-template-columns:1fr;}
-    .form-card{padding:28px;}
-  }
+ @media (max-width:600px){
+
+    .wrap{
+        padding:0 15px;
+    }
+
+    .header-inner{
+        padding:12px 0;
+    }
+
+    /* Mostrar el nombre */
+    .logo-badge span{
+        display:block;
+        font-size:16px;
+        white-space:nowrap;
+    }
+
+    /* Hacer el logo un poco más pequeño */
+    .logo-badge img{
+        height:55px;
+    }
+
+    /* Hacer el botón más compacto */
+    .nav-cta{
+        padding:8px 12px;
+        font-size:12px;
+    }
+
+}
   @media (max-width:600px){
     .wrap{padding:0 20px;}
     .header-inner{padding:12px 0;}
