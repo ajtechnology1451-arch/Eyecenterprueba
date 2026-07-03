@@ -87,7 +87,6 @@
     background:transparent;
     border-radius:0;
     padding:0;
-}
   }
   .logo-badge span{
     font-family:'Fraunces',serif;
@@ -467,28 +466,84 @@
     .reveal{opacity:1; transform:none; transition:none;}
   }
 
-  /* ===== Responsive ===== */
- @media (max-width:600px){
-    .wrap{padding:0 20px;}
-    .header-inner{padding:12px 0;}
-    .logo-badge span{display:none;}
-    .nav-cta{padding:9px 16px; font-size:0.78rem;}
+  /* ===== Responsive: tablet (≤900px) ===== */
+  @media (max-width:900px){
+    .wrap{padding:0 24px;}
+    .hero-grid{grid-template-columns:1fr; gap:40px;}
+    .hero-photo{order:-1; padding-top:0;}
+    .hero-photo .frame{max-width:340px; margin:0 auto;}
+    .hero p.lede{max-width:100%;}
+    .hero-highlights{grid-template-columns:1fr 1fr; gap:22px 28px;}
+    .stat-strip .wrap{grid-template-columns:repeat(2,1fr); row-gap:22px;}
+    .spec-grid{grid-template-columns:repeat(2,1fr);}
+    .why-grid{grid-template-columns:repeat(2,1fr); gap:0;}
+    .why-item:nth-child(2n)::after{display:none;}
+    .why-item{padding:22px 10px 30px;}
+    .why-item:not(:last-child)::after{top:auto; bottom:0; left:10%; right:10%; height:1px; width:auto; bottom:0;}
+    .contact-grid{grid-template-columns:1fr; gap:44px;}
+    .contact-copy p{max-width:100%;}
+  }
 
-}
+  /* ===== Responsive: mobile (≤600px) ===== */
   @media (max-width:600px){
     .wrap{padding:0 20px;}
     .header-inner{padding:12px 0;}
-    .logo-badge span{display:block;
-    font-size:0.9rem;
-    line-height:1.1;
-    white-space:nowrap;}
+    .logo-badge img{height:56px;}
+    .logo-badge span{
+      display:block;
+      font-size:0.82rem;
+      line-height:1.15;
+      white-space:nowrap;
+    }
     .nav-cta{padding:9px 16px; font-size:0.78rem;}
-    .hero{padding:60px 0 0;}
-    .spec-grid{grid-template-columns:1fr;}
-    .why-grid{grid-template-columns:1fr;}
-    .why-item::after{display:none;}
+
+    .hero{padding:36px 0 0;}
+    .hero-grid{gap:32px;}
+    .hero h1{font-size:clamp(1.9rem, 8vw, 2.6rem);}
+    .hero p.lede{font-size:0.95rem; margin-top:18px;}
+    .btn-primary{width:100%; justify-content:center; margin-top:26px; padding:15px 24px;}
+    .hero-photo .frame{max-width:280px;}
+    .hero-highlights{grid-template-columns:1fr; gap:20px; margin-top:38px; padding-top:24px;}
+
+    .stat-strip{padding:24px 0;}
+    .stat-strip .wrap{grid-template-columns:1fr 1fr; gap:22px 16px;}
+    .stat .num{font-size:1.4rem;}
+    .stat .label{font-size:0.72rem;}
+
+    .specialties{padding:70px 0 60px;}
+    .section-head{margin:0 auto 36px;}
+    .spec-grid{grid-template-columns:1fr; gap:20px;}
+    .spec-card{padding:28px 24px;}
+    .spec-card h3{max-width:100%;}
+
+    .why{padding:60px 0;}
+    .why-grid{grid-template-columns:1fr; gap:0;}
+    .why-item{padding:20px 10px;}
+    .why-item:not(:last-child)::after{
+      right:20%; left:20%; bottom:0; top:auto; width:auto; height:1px;
+    }
+
+    .contact{padding:70px 0 80px;}
+    .contact-grid{grid-template-columns:1fr; gap:36px;}
+    .contact-copy h2{font-size:clamp(1.6rem,7vw,2rem);}
+    .btn-whatsapp{width:100%; justify-content:center;}
+    .form-card{padding:26px 22px;}
     .form-row{grid-template-columns:1fr;}
-    .footer-grid{flex-direction:column;}
+    .field input, .field select{font-size:16px;}
+
+    .footer-grid{flex-direction:column; align-items:flex-start;}
+    .footer-brand img{height:64px;}
+    .footer-loc{align-items:flex-start;}
+    .footer-bottom{flex-direction:column; gap:8px;}
+  }
+
+  /* ===== Responsive: small phones (≤380px) ===== */
+  @media (max-width:380px){
+    .wrap{padding:0 16px;}
+    .logo-badge span{display:none;}
+    .hero h1{font-size:1.8rem;}
+    .hero-photo .frame{max-width:100%;}
+    .stat-strip .wrap{grid-template-columns:1fr;}
   }
 </style>
 </head>
@@ -596,7 +651,7 @@
 
       <div class="spec-card reveal">
         <span class="ordinal">01</span>
-        <div class="spec-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><img src="laser.png" alt="LASIK"></svg></div>
+        <div class="spec-icon"><img src="laser.png" alt="LASIK" style="width:26px;height:26px;object-fit:contain;"></div>
         <h3 class="display">Deja los lentes</h3>
         <div class="tagline">Recupera tu libertad visual sin depender de lentes.</div>
         <p>Muchos pacientes logran reducir o eliminar la dependencia de lentes, según su evaluación médica. Corrige miopía, hipermetropía y astigmatismo con cirugía FemtoLASIK de alta precisión y vuelve a disfrutar una visión nítida en un procedimiento ambulatorio que dura solo unos minutos.</p>
@@ -605,7 +660,7 @@
 
       <div class="spec-card reveal">
         <span class="ordinal">02</span>
-        <div class="spec-icon"><img src="catarata.png" alt="catarata"></svg></div>
+        <div class="spec-icon"><img src="catarata.png" alt="catarata" style="width:26px;height:26px;object-fit:contain;"></div>
         <h3 class="display">Catarata</h3>
         <div class="tagline">En pacientes candidatos, la cirugía de catarata puede mejorar significativamente la calidad visual.</div>
         <p>Si notas visión borrosa, dificultad para conducir de noche o colores menos brillantes, la catarata puede ser la causa. Reemplazamos el cristalino opaco con un lente intraocular de alta tecnología para recuperar una visión clara.</p>
@@ -614,7 +669,7 @@
 
       <div class="spec-card reveal">
         <span class="ordinal">03</span>
-        <div class="spec-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><img src="pediatria.png" alt="pediatrica"></svg></div>
+        <div class="spec-icon"><img src="pediatria.png" alt="pediatrica" style="width:26px;height:26px;object-fit:contain;"></div>
         <h3 class="display">Oftalmología Pediátrica</h3>
         <div class="tagline">Detectar a tiempo cambia el futuro de tu hijo.</div>
         <p>Muchos problemas visuales infantiles no presentan síntomas evidentes. Realizamos revisiones especializadas para detectar y tratar estrabismo, ojo vago, miopía y otros trastornos visuales en un ambiente diseñado para su confianza.</p>
@@ -623,7 +678,7 @@
 
       <div class="spec-card reveal">
         <span class="ordinal">04</span>
-        <div class="spec-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><img src="oculoplastica.png" alt="oculoplastica"></svg></div>
+        <div class="spec-icon"><img src="oculoplastica.png" alt="oculoplastica" style="width:26px;height:26px;object-fit:contain;"></div>
         <h3 class="display">Oculoplastia y Estética Ocular</h3>
         <div class="tagline">Una mirada más saludable, funcional y rejuvenecida.</div>
         <p>Tratamos enfermedades de los párpados, la vía lagrimal y la órbita, además de realizar procedimientos como blefaroplastia para mejorar tanto la función como la apariencia de la mirada, siempre preservando la salud de tus ojos.</p>
@@ -632,7 +687,7 @@
 
       <div class="spec-card reveal">
         <span class="ordinal">05</span>
-        <div class="spec-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><img src="retina.png" alt="retina"></svg></div>
+        <div class="spec-icon"><img src="retina.png" alt="retina" style="width:26px;height:26px;object-fit:contain;"></div>
         <h3 class="display">Retina</h3>
         <div class="tagline">Detectar a tiempo una enfermedad de la retina puede salvar tu visión.</div>
         <p>La retina es una de las estructuras más importantes del ojo. Diagnosticamos y tratamos enfermedades como retinopatía diabética, desprendimiento de retina y degeneración macular con tecnología de alta precisión y experiencia.</p>
@@ -641,7 +696,7 @@
 
       <div class="spec-card reveal">
         <span class="ordinal">06</span>
-        <div class="spec-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="7" width="18" height="13" rx="2.2"/><img src="estudios.png" alt="estudios"></svg></div>
+        <div class="spec-icon"><img src="estudios.png" alt="estudios" style="width:26px;height:26px;object-fit:contain;"></div>
         <h3 class="display">Estudios Oftalmológicos Especializados</h3>
         <div class="tagline">La mejor decisión comienza con un diagnóstico preciso.</div>
         <p>Contamos con tecnología de última generación para realizar estudios como OCT, topografía corneal, campo visual, biometría y retinografía, permitiendo detectar enfermedades de manera temprana y diseñar el tratamiento más adecuado.</p>
